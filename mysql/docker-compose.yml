@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mysql_compose:
+    image: mysql:5.7
+    container_name: mysql_compose
+    ports:
+      - 6606:3306
+    volumes:
+      - /docker/mysql/data:/var/lib/mysql
+      - /docker/mysql/conf/mymysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: "4561230."

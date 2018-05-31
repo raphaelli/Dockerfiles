@@ -1,0 +1,22 @@
+version: '2'
+# 定义服务 我这里nginx + php
+services:
+ nginx:
+  # 依赖关系 先跑php
+  depends_on:
+   - "php"
+  image: "nginx:latest"
+  # 数据卷
+  volumes:
+   - "$PWD/conf.d:/etc/nginx/conf.d"
+   - "$PWD/html:/usr/share/nginx/html"
+  # 端口映射
+  ports:
+   - "8082:80"
+  # 容器名称
+  container_name: "compose-nginx"
+ php:
+  image: "php:fpm"
+  volumes:
+   - "$PWD/html:/var/www/html"
+  container_name: "compose-php"
