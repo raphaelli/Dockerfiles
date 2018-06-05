@@ -1,0 +1,13 @@
+version: "3"
+services:
+    mssql_server:
+      image: microsoft/mssql-server-linux:2017-latest
+      container_name: mssql_compose
+      ports:
+        - 1433:1433
+      volumes:
+        - /docker/mssql/mssql-volume:/mnt/drive'
+      environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=P@ssw0rd
+        
