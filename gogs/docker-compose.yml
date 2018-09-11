@@ -1,0 +1,33 @@
+version: '3'
+services:
+### 网页服务器的container ##################################
+ web:
+  image: gogs/gogs
+  ports:
+    # 端口转发 80
+    - "10080:3000"
+    - "10022:22"
+  volumes:
+    - ./git:/data/git
+    - ./etc/app.ini:/data/gogs/conf/app.ini
+  hostname: gogs
+  networks:
+    - dlaravel_net
+  
+### 数据库 container ##################################
+### 若部署到生产环境请更换密码并保证密码强度！！！
+ db:
+  image: mysql:5.7.19
+  network_mode: "service:web"
+  volumes:
+    - ./data:/var/lib/mysql
+  environment:
+   - MYSQL_DATABASE=gogs
+   - MYSQL_USER=gogs
+   - MYSQL_PASSWORD=gogs
+   #- MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD-secret}
+   - MYSQL_ALLOW_EMPTY_PASSWORD= "yes"
+
+######top-level netowks key#######
+networks:
+    dlaravel_net:
