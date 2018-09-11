@@ -16,3 +16,13 @@ $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh
 $ #Or  curl -sSL https://get.docker.com/ | sh 
 ```
+
+# Automatically start
+## Ubuntu
+```
+$ vim  /etc/rc.local
+## add
+/usr/local/bin/docker-compose -f /docker/mssql/docker-compose.yml up -d
+```
+
+>Using  `docker logs` check something you want in logs.
