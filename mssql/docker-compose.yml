@@ -6,6 +6,7 @@ services:
       ports:
         - 1433:1433
       volumes:
+        - '/docker/mssql/mssql-volume:/mnt/drive'
         - '/docker/mssql/opt:/var/opt/mssql'
       environment:
         - ACCEPT_EULA=Y
