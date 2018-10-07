@@ -1,7 +1,7 @@
 version: "3"
 services:
     mssql_server:
-      image: microsoft/mssql-server-linux:2017-latest
+      image: microsoft/mssql-server-linux
       container_name: mssql_compose
       ports:
         - 1433:1433
